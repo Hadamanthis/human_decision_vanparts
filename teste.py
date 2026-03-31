@@ -4,7 +4,7 @@ from state import State
 from graph import build_graph
 
 state: State = {
-    "user_message": "Gostaria de pedir o reembolso de um dos itens que pedi.",
+    "user_message": "quero reembolso da correia dentada",
     "intent": None
 }
 
@@ -12,4 +12,4 @@ graph = build_graph()
 
 result = graph.invoke(state)
 
-print(result["resolution"])
+print(result)

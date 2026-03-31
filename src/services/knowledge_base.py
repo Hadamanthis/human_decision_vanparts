@@ -41,20 +41,25 @@ class KnowledgeBase:
                     self.collection.upsert(
                         ids=[sentence_id],
                         documents=[sentence],
-                        metadatas=[{"hash": file_hash}]
+                        metadatas=[{"hash": file_hash, "source": _file.stem}]
                     )
         
         self.logger.info(f"Indexação do arquivo {_file.name} concluída.")
 
-    def search(self, query: str, n_results: int = 1) -> list[str]:
+    def search(self, query: str, n_results: int = 1, source: str | None = None) -> list[str]:
         """ Busca por um trecho de texto na base de conhecimento e retorna os n_results trechos mais relevantes """
 
         self.logger.info(f"Realizando busca na knowledge base, query: '{query}'")
 
-        query_results = self.collection.query(query_texts=[query], n_results=n_results).get("documents")
+        if source is None:
+            query_results = self.collection.query(query_texts=[query], n_results=n_results).get("documents")
+        else:
+            query_results = self.collection.query(query_texts=[query], n_results=n_results, where={"source": source}).get("documents")
 
         documents_flat = [document for sublist in query_results for document in sublist]
 
         results = list(set(documents_flat))
+
+        print(results)
 
         return results
