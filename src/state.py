@@ -6,3 +6,4 @@ class State(TypedDict):
     resolution: str | None
     product: str | None
     price: float | None
+    risk_level: str | None

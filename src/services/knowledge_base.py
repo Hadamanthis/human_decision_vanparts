@@ -60,6 +60,4 @@ class KnowledgeBase:
 
         results = list(set(documents_flat))
 
-        print(results)
-
         return results

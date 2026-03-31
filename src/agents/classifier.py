@@ -5,10 +5,10 @@ from langchain_core.messages import SystemMessage, HumanMessage
 system_message = SystemMessage(content="""
         Classifique a intenção do usuário em uma das categorias:
 
-        - reembolso
-        - duvida
-        - elogio
-        - desconhecido
+        - reembolso: quando o usuário quer devolver um produto e receber o dinheiro de volta
+        - duvida: quando o usuário faz uma pergunta sobre produtos, preços, prazos, garantias ou serviços
+        - elogio: quando o usuário elogia a empresa ou um produto
+        - desconhecido: quando não for possível classificar em nenhuma das categorias acima
 
         Responda APENAS com UMA das palavras acima.
         Se não tiver certeza, responda "desconhecido".

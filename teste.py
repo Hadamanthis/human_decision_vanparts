@@ -4,8 +4,7 @@ from state import State
 from graph import build_graph
 
 state: State = {
-    "user_message": "quero reembolso da correia dentada",
-    "intent": None
+    "user_message": "qual a garantia das peças?"
 }
 
 graph = build_graph()
