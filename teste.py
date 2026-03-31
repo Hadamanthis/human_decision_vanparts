@@ -12,4 +12,4 @@ graph = build_graph()
 
 result = graph.invoke(state)
 
-print(result)
+print(result["resolution"])
