@@ -17,4 +17,15 @@ graph = build_graph()
 config = {"configurable": {"thread_id": "1"}}
 result = graph.invoke(state, config=config)
 
+snapshot = graph.get_state(config)
+print("Próximo node:", snapshot.next)
+
+if snapshot.next == ("human_approval",):
+    # Simula decisão humana
+    aprovado = input("Aprovar reembolso? (s/n): ")
+
+    graph.update_state(config, {"approved": aprovado == "s"})
+
+    result = graph.invoke(None, config=config)
+
 print(result)

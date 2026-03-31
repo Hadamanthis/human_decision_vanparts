@@ -8,3 +8,4 @@ class State(TypedDict):
     price: float | None
     risk_level: str | None
     approved: bool | None
+    final_message: bool | None

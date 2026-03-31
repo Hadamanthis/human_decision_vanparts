@@ -5,6 +5,7 @@ from agents.classifier import classify_intent
 from agents.resolver import resolve
 from agents.risk_assessment import evaluate_risk
 from agents.human_approval import human_approval
+from agents.final_response import final_response
 from services.llm_client import LLMClient
 from langgraph.checkpoint.memory import MemorySaver
 
@@ -33,7 +34,8 @@ def build_graph():
     graph.add_node("resolver", lambda state: resolve(state, llm_client, knowledge_base_client))
     graph.add_node("risk_assessment", lambda state: evaluate_risk(state))
     graph.add_node("human_approval", lambda state: human_approval(state))
-    graph.add_node("final_response", lambda state: state)
+    graph.add_node("final_response", lambda state: final_response(state))
+
     
     # Define as conexões entre os nós
     graph.add_edge("classifier", "resolver")
