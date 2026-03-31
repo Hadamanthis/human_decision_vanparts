@@ -7,3 +7,4 @@ class State(TypedDict):
     product: str | None
     price: float | None
     risk_level: str | None
+    approved: bool | None
