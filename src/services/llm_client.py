@@ -8,9 +8,6 @@ T = TypeVar("T") # Tipo genérico antes do python 3.12
 
 class LLMClient:
     def __init__(self):
-        
-        dotenv.load_dotenv()
-
         self.model = ChatGroq(
             model="llama-3.1-8b-instant",
             temperature=0

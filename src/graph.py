@@ -9,11 +9,6 @@ from agents.final_response import final_response
 from services.llm_client import LLMClient
 from langgraph.checkpoint.memory import MemorySaver
 
-llm_client = LLMClient()
-knowledge_base_client = KnowledgeBase()
-knowledge_base_client.index()
-checkpointer = MemorySaver()
-
 def router_after_resolver(state: State) -> str:
     if state["intention"] == "reembolso":
         return "risk_assessment"
@@ -27,6 +22,12 @@ def router_after_risk_assessment(state: State) -> str:
         return "final_response"
 
 def build_graph():
+
+    llm_client = LLMClient()
+    knowledge_base_client = KnowledgeBase()
+    knowledge_base_client.index()
+    checkpointer = MemorySaver()
+
     graph = StateGraph(State)
 
     # Adiciona o node
